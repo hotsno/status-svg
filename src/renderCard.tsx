@@ -36,13 +36,13 @@ const renderCard = async (body: LanyardTypes.Root): Promise<string> => {
 
     return `
     <svg width="410" height="50" xmlns="http://www.w3.org/2000/svg">
-        <text x="205" text-anchor="middle">
+        <text x="205" y="25" text-anchor="middle">
             <tspan dy="1.2rem">${regularText}</tspan>
             <tspan font-weight="bold">${boldText}</tspan>
         </text>
         <style>
             text {
-                font-family: 'Comic Sans MS';
+                font-family: Helvetica, Sans-Serif, 'Comic Sans MS';
                 fill: #ddd;
             }
         </style>
