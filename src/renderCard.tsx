@@ -30,8 +30,9 @@ const renderCard = async (body: LanyardTypes.Root): Promise<string> => {
 
     if (regularText.length + boldText.length > 40) {
         boldText = boldText.substring(0, 37 - regularText.length) + "...";
-
     }
+
+    regularText = regularText.toLowerCase();
 
     return `
     <svg width="410" height="50" xmlns="http://www.w3.org/2000/svg">
