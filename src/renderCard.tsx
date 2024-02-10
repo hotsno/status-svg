@@ -13,14 +13,14 @@ interface StyledText {
 function getSpotifyStyledText(data: LanyardTypes.Data): StyledText[] {
     return [
         {
-            text: 'Listening to'
+            text: 'Listening to '
         },
         {
-            text: data.spotify.song,
+            text: data.spotify.song + ' ',
             style: FontStyle.Italic
         },
         {
-            text: 'by'
+            text: 'by '
         },
         {
             text: data.spotify.artist,
@@ -32,7 +32,7 @@ function getSpotifyStyledText(data: LanyardTypes.Data): StyledText[] {
 function getOnlineStatusStyledText(data: LanyardTypes.Data): StyledText[] {
     return [
         {
-            text: 'Currently'
+            text: 'Currently '
         },
         {
             text: data.discord_status === 'offline' ? 'offline' : 'online',
@@ -47,7 +47,7 @@ function getPlexStyledText(data: LanyardTypes.Data): StyledText[] {
     var mediaInfo = activity.state.substring(activity.state.indexOf("·"));
     return [
         {
-            text: 'Watching'
+            text: 'Watching '
         },
         {
             text: mediaName + ' ' + mediaInfo,
@@ -59,7 +59,7 @@ function getPlexStyledText(data: LanyardTypes.Data): StyledText[] {
 function getGenericPlayingStyledText(data: LanyardTypes.Data): StyledText[] {
     return [
         {
-            text: 'Playing'
+            text: 'Playing '
         },
         {
             text: data.activities[0].name,
@@ -108,7 +108,7 @@ function getTextMarkup(data: LanyardTypes.Data): string {
     for (let styledText of styledTextArray) {
         let bold = styledText.style === FontStyle.Bold ? ` font-weight="bold"` : '';
         let italic = styledText.style === FontStyle.Italic ? ` font-style="italic"` : '';
-        textMarkupBuilder.push(`<tspan${bold}${italic}>${styledText.text}</tspan>\n`);
+        textMarkupBuilder.push(`<tspan${bold}${italic}>${styledText.text}</tspan>`);
     }
     return textMarkupBuilder.join('');
 }
