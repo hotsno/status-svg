@@ -56,7 +56,7 @@ export default function Home({ userCount }: { userCount: number }) {
             </Head>
             <Main>
                 <Container>
-                    <Title>lanyard profile readme 🏷️</Title>
+                    <Title>status-svg</Title>
                     <Paragraph>Utilize Lanyard to display your Discord Presence in your GitHub Profile</Paragraph>
                     <br />
                     <Input onChange={el => setUserId(el.target.value)} placeholder="Enter your Discord ID" />
@@ -90,10 +90,6 @@ export default function Home({ userCount }: { userCount: number }) {
                     ) : null}
                 </Container>
             </Main>
-            <FooterStat>
-                Lanyard Profile Readme has <div style={{ fontWeight: "bold", width: "3.2rem" }} ref={countRef} /> total
-                users!
-            </FooterStat>
         </>
     );
 }
@@ -221,44 +217,4 @@ const Example = styled.img`
     display: block;
     margin: 30px auto 0px;
     max-width: 100%;
-`;
-
-const FooterStat = styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    line-height: 1rem;
-    bottom: 1rem;
-    left: 50%;
-    transform: translate(-50%, 0);
-    background: #000;
-    padding: 1rem 1.25rem;
-    color: #fff;
-    border-radius: 0.55rem;
-    text-align: center;
-    box-shadow: 0 2px 15px -10px #a21caf;
-    min-width: 400px;
-
-    @media (max-width: 400px) {
-        font-size: 14px;
-        min-width: 365px;
-        padding: 0.75rem 1rem;
-    }
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 0.55rem;
-        border: 2px solid transparent;
-        background: linear-gradient(45deg, #be123c, #6b21a8, #3730a3) border-box;
-        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-    }
 `;
