@@ -8,7 +8,7 @@ const renderCard = async (body: LanyardTypes.Root): Promise<string> => {
     
     if (data.listening_to_spotify) {
         regularText = "listening to";
-        boldText = data.spotify.song;
+        boldText = data.spotify.song + " by " + data.spotify.artist;
     }
     else if (data.activities.length > 0) {
         let activityName = data.activities[0].name;
