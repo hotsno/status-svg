@@ -1,5 +1,3 @@
-//thanks alistair @ uwu.red
-
 export interface Root {
     success: boolean;
     data: Data;
