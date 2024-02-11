@@ -38,7 +38,7 @@ Append the query param `lightMode=:bool` to the end of the URL, replacing `:bool
 
 ### ___Color___
 
-Append the query param `color=:string` to the end of the URL, replacing `:string` with either a hex code (don't include the `#`). This will override the light mode option.
+Append the query param `color=:hexCode` to the end of the URL, replacing `:hexCode` with a color hex code (don't include the `#`). This will override the light mode option.
 
 ## Credits
 - [Lanyard](https://github.com/Phineas/lanyard)
