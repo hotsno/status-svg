@@ -20,21 +20,21 @@ For other services, figure out how to display an image and use the same URL.
 It should display something similar to the following (I am using my Discord user ID as an example):
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://status-svg.vercel.app/api/707743097488146524?leftAligned=true">
-  <img src="https://status-svg.vercel.app/api/asdasd?leftAligned=true?lightMode=true">
+  <source media="(prefers-color-scheme: dark)" srcset="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true">
+  <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true?lightMode=true">
 </picture>
 
 ## Options
 
 There are a few options to customize this display using query parameters:
 
-### ___Left aligned___
+### ___Left align___
 
-Append the query param `leftAligned=:bool` to the end of the URL, replacing `:leftAligned` with either `true` or `false`. Default is `false`.
+Append the query param `leftAlign=:bool` to the end of the URL, replacing `:bool` with either `true` or `false`. Default is `false`.
 
 ### ___Light mode___
 
-Append the query param `lightMode=:bool` to the end of the URL, replacing `:lightMode` with either `true` or `false`. Default is `false`. Light mode will make the text dark to be readable in light mode, and vice-versa.
+Append the query param `lightMode=:bool` to the end of the URL, replacing `:bool` with either `true` or `false`. Default is `false`. Light mode will make the text dark to be readable in light mode, and vice-versa.
 
 ## Credits
 - [Lanyard](https://github.com/Phineas/lanyard)
