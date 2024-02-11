@@ -1,6 +1,6 @@
 # status-svg
 
-🏷️ Utilize Lanyard to display your Discord Presence information on your GitHub/AniList/etc. profiles
+🏷️ Utilize Lanyard to display your Discord Presence information on your GitHub/AniList/other profiles
 
 ## Usage
 
