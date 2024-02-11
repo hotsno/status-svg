@@ -10,27 +10,29 @@ interface StyledText {
     style?: FontStyle;
 }
 
-function getSpotifyStyledText(data: LanyardTypes.Data): StyledText[] {
-    return [
+function getSpotifyStyledTextArray(data: LanyardTypes.Data): StyledText[] {
+    let styledText: StyledText[] = [
         {
             text: 'Listening to '
         },
         {
-            text: data.spotify.song + ' ',
+            text: data.spotify.song,
             style: FontStyle.Italic
         },
         {
-            text: 'by '
+            text: ' by '
         },
         {
             text: data.spotify.artist,
             style: FontStyle.Bold
         },
     ];
+
+    return trimStyledTextArray(styledText);
 }
 
-function getOnlineStatusStyledText(data: LanyardTypes.Data): StyledText[] {
-    return [
+function getOnlineStatusStyledTextArray(data: LanyardTypes.Data): StyledText[] {
+    let styledText: StyledText[] = [
         {
             text: 'Currently '
         },
@@ -39,25 +41,30 @@ function getOnlineStatusStyledText(data: LanyardTypes.Data): StyledText[] {
             style: FontStyle.Bold
         },
     ];
+
+    return trimStyledTextArray(styledText);
 }
 
-function getPlexStyledText(data: LanyardTypes.Data): StyledText[] {
+function getPlexStyledTextArray(data: LanyardTypes.Data): StyledText[] {
     let activity = data.activities[0];
     let mediaName = activity.details ?? "";
-    var mediaInfo = activity.state.substring(activity.state.indexOf("·"));
-    return [
+    let mediaInfo = activity.state.substring(activity.state.indexOf("·"));
+
+    let styledText: StyledText[] = [
         {
             text: 'Watching '
         },
         {
-            text: mediaName + ' ' + mediaInfo,
+            text: `${mediaName} ${mediaInfo}`,
             style: FontStyle.Bold
         },
     ];
+
+    return trimStyledTextArray(styledText);
 }
 
-function getGenericPlayingStyledText(data: LanyardTypes.Data): StyledText[] {
-    return [
+function getGenericPlayingStyledTextArray(data: LanyardTypes.Data): StyledText[] {
+    let styledText: StyledText[] = [
         {
             text: 'Playing '
         },
@@ -66,10 +73,12 @@ function getGenericPlayingStyledText(data: LanyardTypes.Data): StyledText[] {
             style: FontStyle.Bold
         }
     ];
+
+    return trimStyledTextArray(styledText);
 }
 
-function trimStyledText(styledTextArray: StyledText[]): StyledText[] {
-    var trimmedStyledText: StyledText[] = [];
+function trimStyledTextArray(styledTextArray: StyledText[]): StyledText[] {
+    var trimmedStyledTextArray: StyledText[] = [];
     var charCount = 0;
     for (let styledText of styledTextArray) {
         if (charCount + styledText.text.length > 40) {
@@ -77,34 +86,35 @@ function trimStyledText(styledTextArray: StyledText[]): StyledText[] {
                 text: styledText.text.substring(0, 37 - charCount) + '...',
                 style: styledText.style
             }
-            trimmedStyledText.push(trimmed);
+            trimmedStyledTextArray.push(trimmed);
             break;
         }
-        trimmedStyledText.push(styledText);
+        trimmedStyledTextArray.push(styledText);
         charCount += styledText.text.length;
     }
-    return trimmedStyledText;
+    return trimmedStyledTextArray;
 }
 
-function getUntrimmedStyledText(data: LanyardTypes.Data): StyledText[] {
+function getStyledTextArray(data: LanyardTypes.Data): StyledText[] {
     if (data.activities.length === 0) {
-        return getOnlineStatusStyledText(data);
+        return getOnlineStatusStyledTextArray(data);
     }
 
     let activityName = data.activities[0].name;
     switch (activityName) {
         case 'Spotify':
-            return getSpotifyStyledText(data);
+            return getSpotifyStyledTextArray(data);
         case 'Plex':
-            return getPlexStyledText(data);
+            return getPlexStyledTextArray(data);
         default:
-            return getGenericPlayingStyledText(data);
+            return getGenericPlayingStyledTextArray(data);
     }
 }
 
 function getTextMarkup(data: LanyardTypes.Data): string {
+    let styledTextArray = getStyledTextArray(data);
+
     var textMarkupBuilder: string[] = [];
-    var styledTextArray = trimStyledText(getUntrimmedStyledText(data));
     for (let styledText of styledTextArray) {
         let bold = styledText.style === FontStyle.Bold ? ` font-weight="bold"` : '';
         let italic = styledText.style === FontStyle.Italic ? ` font-style="italic"` : '';
@@ -120,11 +130,12 @@ const renderCard = async (body: LanyardTypes.Root): Promise<string> => {
 
     return `
     <svg width="410" height="50" xmlns="http://www.w3.org/2000/svg">
-        <text x="205" y="25" text-anchor="middle">
+        <text x="205" y="31" text-anchor="middle">
             ${textMarkup}
         </text>
         <style>
             text {
+                font-size: 16px;
                 font-family: Helvetica, Sans-Serif, 'Comic Sans MS';
                 fill: #ddd;
             }
