@@ -21,7 +21,7 @@ It should display something similar to the following (I am using my Discord user
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true">
-  <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true?lightMode=true">
+  <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true&lightMode=true">
 </picture>
 
 ## Options
@@ -35,6 +35,10 @@ Append the query param `leftAlign=:bool` to the end of the URL, replacing `:bool
 ### ___Light mode___
 
 Append the query param `lightMode=:bool` to the end of the URL, replacing `:bool` with either `true` or `false`. Default is `false`. Light mode will make the text dark to be readable in light mode, and vice-versa.
+
+### ___Color___
+
+Append the query param `color=:string` to the end of the URL, replacing `:string` with either a hex code (don't include the `#`). This will override the light mode option.
 
 ## Credits
 - [Lanyard](https://github.com/Phineas/lanyard)

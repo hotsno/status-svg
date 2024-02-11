@@ -3,6 +3,7 @@ import * as LanyardTypes from "./LanyardTypes";
 type Parameters = {
     lightMode?: string;
     leftAlign?: string;
+    color?: string;
 };
 
 enum FontStyle {
@@ -130,13 +131,22 @@ function getTextMarkup(data: LanyardTypes.Data): string {
     return textMarkupBuilder.join('');
 }
 
+function getTextColor(lightMode: boolean, color?: string): string {
+    if (color) {
+        return `#${color}`;
+    }
+    return lightMode ? '#222' : '#ddd';
+}
+
 const renderCard = async (body: LanyardTypes.Root, params: Parameters): Promise<string> => {
     if (!body.success) return "";
 
     let lightMode = parseBool(params.lightMode);
     let leftAlign = parseBool(params.leftAlign);
+    let color = params.color;
 
     let textMarkup: string = getTextMarkup(body.data);
+    let textColor = getTextColor(lightMode, color);
 
     return `
     <svg width="410" height="50" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +157,7 @@ const renderCard = async (body: LanyardTypes.Root, params: Parameters): Promise<
             text {
                 font-size: 16px;
                 font-family: Helvetica, Sans-Serif, 'Comic Sans MS';
-                fill: ${lightMode ? '#222' : '#ddd'};
+                fill: ${textColor};
             }
         </style>
     </svg> 
