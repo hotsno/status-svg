@@ -24,6 +24,9 @@ It should display something similar to the following (I am using my Discord user
   <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true&lightMode=true">
 </picture>
 
+## Note
+Contains a custom configuration for the "Plex" status (will change the verb to "Watching", etc). It assumes you're using [this](https://github.com/phin05/discord-rich-presence-plex) for the Plex rich presence.
+
 ## Options
 
 There are a few options to customize this display using query parameters:
