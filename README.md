@@ -11,7 +11,7 @@ For GitHub, in a `.md` file, include the following, replacing `:id` with your Di
 ```md
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://status-svg.vercel.app/api/:id">
-  <img alt="light" src="https://status-svg.vercel.app/api/:id?lightMode=true">
+  <img src="https://status-svg.vercel.app/api/:id?lightMode=true">
 </picture>
 ```
 
