@@ -1,5 +1,10 @@
 import * as LanyardTypes from "./LanyardTypes";
 
+type Parameters = {
+    lightMode?: string;
+    leftAlign?: string;
+};
+
 enum FontStyle {
   Italic,
   Bold,
@@ -9,6 +14,8 @@ interface StyledText {
     text: string;
     style?: FontStyle;
 }
+
+const parseBool = (string: string | undefined): boolean => string === "true" ? true : false;
 
 function getSpotifyStyledTextArray(data: LanyardTypes.Data): StyledText[] {
     let styledText: StyledText[] = [
@@ -123,21 +130,24 @@ function getTextMarkup(data: LanyardTypes.Data): string {
     return textMarkupBuilder.join('');
 }
 
-const renderCard = async (body: LanyardTypes.Root): Promise<string> => {
+const renderCard = async (body: LanyardTypes.Root, params: Parameters): Promise<string> => {
     if (!body.success) return "";
+
+    let lightMode = parseBool(params.lightMode);
+    let leftAlign = parseBool(params.leftAlign);
 
     let textMarkup: string = getTextMarkup(body.data);
 
     return `
     <svg width="410" height="50" xmlns="http://www.w3.org/2000/svg">
-        <text x="205" y="31" text-anchor="middle">
+        <text ${leftAlign ? `x="5"` : `x="205" text-anchor="middle"`} y="31">
             ${textMarkup}
         </text>
         <style>
             text {
                 font-size: 16px;
                 font-family: Helvetica, Sans-Serif, 'Comic Sans MS';
-                fill: #ddd;
+                fill: ${lightMode ? '#222' : '#ddd'};
             }
         </style>
     </svg> 

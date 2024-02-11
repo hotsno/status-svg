@@ -10,16 +10,6 @@ type Data = {
     code?: string;
 };
 
-type Parameters = {
-    theme?: string;
-    bg?: string;
-    hideStatus?: string;
-    hideTimestamp?: string;
-    hideDiscrim?: string;
-    borderRadius?: string;
-    animated?: string;
-};
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     let getUser;
 
@@ -28,8 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             error: `No ID provided.`,
         });
 
-    const params: Parameters = req.query,
-        userId = req.query.id[0];
+    const params = req.query;
+    const userId = req.query.id[0];
 
     if (!isSnowflake(userId))
         return res.send({
@@ -46,10 +36,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
         if (error.response.status === 404) return res.status(404).send({ error: "Invalid user!" });
 
-        console.log(error); // Only console log the error if its not a 404
+        console.log(error);
 
         return res.status(400).send({
-            error: `Something went wrong! If everything looks correct and this still occurs, please contact @notcnrad on Twitter.`,
+            error: `Something went wrong!`,
         });
     }
 
@@ -63,6 +53,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
     res.setHeader("content-security-policy", "default-src 'none'; img-src * data:; style-src 'unsafe-inline'");
 
-    const svg = await renderCard(getUser.data);
+    const svg = await renderCard(getUser.data, params);
     res.status(200).send(svg as any);
 }
