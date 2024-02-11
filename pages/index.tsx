@@ -6,7 +6,7 @@ export default function Home() {
         <>
             <GlobalStyle />
             <Main>
-                <p>https://status-svg.vercel.app/id/DISCORD_ID_HERE</p>
+                <h3>For instructions visit <a href="https://github.com/hotsno/status-svg">https://github.com/hotsno/status-svg</a></h3>
             </Main>
         </>
     );
@@ -33,8 +33,9 @@ const GlobalStyle = createGlobalStyle`
     background: rgb(24 28 39);
   }
 
-  p {
+  h3 {
     color: white;
+    font-family: Helvetica, Sans-Serif;
   }
 `;
 
