@@ -1,4 +1,5 @@
 import * as LanyardTypes from "./LanyardTypes";
+import escape from "escape-html";
 
 type Parameters = {
     lightMode?: string;
@@ -126,7 +127,7 @@ function getTextMarkup(data: LanyardTypes.Data): string {
     for (let styledText of styledTextArray) {
         let bold = styledText.style === FontStyle.Bold ? ` font-weight="bold"` : '';
         let italic = styledText.style === FontStyle.Italic ? ` font-style="italic"` : '';
-        textMarkupBuilder.push(`<tspan${bold}${italic}>${styledText.text}</tspan>`);
+        textMarkupBuilder.push(`<tspan${bold}${italic}>${escape(styledText.text)}</tspan>`);
     }
     return textMarkupBuilder.join('');
 }
