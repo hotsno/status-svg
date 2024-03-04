@@ -72,6 +72,24 @@ function getPlexStyledTextArray(data: LanyardTypes.Data): StyledText[] {
     return trimStyledTextArray(styledText);
 }
 
+function getKavitaStyledTextArray(data: LanyardTypes.Data): StyledText[] {
+    let activity = data.activities[0];
+    let mangaName = activity.details ?? "";
+    let mangaInfo = activity.state;
+
+    let styledText: StyledText[] = [
+        {
+            text: 'Reading ',
+        },
+        {
+            text: `${mangaName} · ${mangaInfo}`,
+            style: FontStyle.Bold
+        },
+    ];
+
+    return trimStyledTextArray(styledText);
+}
+
 function getGenericPlayingStyledTextArray(data: LanyardTypes.Data): StyledText[] {
     let styledText: StyledText[] = [
         {
@@ -115,6 +133,8 @@ function getStyledTextArray(data: LanyardTypes.Data): StyledText[] {
             return getSpotifyStyledTextArray(data);
         case 'Plex':
             return getPlexStyledTextArray(data);
+        case 'Kavita':
+            return getKavitaStyledTextArray(data);
         default:
             return getGenericPlayingStyledTextArray(data);
     }
