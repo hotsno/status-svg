@@ -123,11 +123,13 @@ function trimStyledTextArray(styledTextArray: StyledText[]): StyledText[] {
 }
 
 function getStyledTextArray(data: LanyardTypes.Data): StyledText[] {
-    if (data.activities.length === 0) {
+    let activities = data.activities.filter(obj => obj.id !== "custom");
+
+    if (activities.length === 0) {
         return getOnlineStatusStyledTextArray(data);
     }
 
-    let activityName = data.activities[0].name;
+    let activityName = activities[0].name;
     switch (activityName) {
         case 'Spotify':
             return getSpotifyStyledTextArray(data);
