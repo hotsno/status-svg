@@ -25,14 +25,14 @@ function getSpotifyStyledTextArray(data: LanyardTypes.Data): StyledText[] {
             text: 'Listening to '
         },
         {
-            text: data.spotify.song,
+            text: data.spotify.song ?? 'a song',
             style: FontStyle.Italic
         },
         {
             text: ' by '
         },
         {
-            text: data.spotify.artist,
+            text: data.spotify.artist ?? 'Unknown',
             style: FontStyle.Bold
         },
     ];
