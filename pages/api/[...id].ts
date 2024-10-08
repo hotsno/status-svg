@@ -43,6 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "no-cache");
     res.setHeader("content-security-policy", "default-src 'none'; img-src * data:; style-src 'unsafe-inline'");
 
     const svg = await renderCard(getUser.data, params);
