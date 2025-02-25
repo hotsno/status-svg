@@ -25,9 +25,6 @@ It should display something similar to the following (I am using my Discord user
   <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true&lightMode=true">
 </picture>
 
-> [!NOTE]  
-> There is special handling for this [Plex presence](https://github.com/phin05/discord-rich-presence-plex)
-
 ## Options
 
 There are a few options to customize this display using query parameters:
@@ -43,6 +40,11 @@ Append the query param `lightMode=:bool` to the end of the URL, replacing `:bool
 ### ___Color___
 
 Append the query param `color=:hexCode` to the end of the URL, replacing `:hexCode` with a color hex code (don't include the `#`). This will override the light mode option.
+
+## Special presences
+There is some custom handling of a few Discord presences:
+- This [Plex presence](https://github.com/phin05/discord-rich-presence-plex) will show "Watching {title}"
+
 
 ## Credits
 - [Lanyard](https://github.com/Phineas/lanyard)
