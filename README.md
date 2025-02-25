@@ -4,7 +4,8 @@
 
 ## Usage
 
-First, join the Lanyard [Discord](https://discord.com/invite/WScAm7vNGF) (if you haven't already) for this to work.
+> [!NOTE]  
+> Must be in and sharing "Activity status" with the Lanyard [Discord server](https://discord.com/invite/WScAm7vNGF).
 
 For GitHub, in a `.md` file, include the following, replacing `:id` with your Discord user ID:
 
@@ -24,8 +25,8 @@ It should display something similar to the following (I am using my Discord user
   <img src="https://status-svg.vercel.app/api/707743097488146524?leftAlign=true&lightMode=true">
 </picture>
 
-## Note
-Contains a custom configuration for the "Plex" status (will change the verb to "Watching", etc). It assumes you're using [this](https://github.com/phin05/discord-rich-presence-plex) for the Plex rich presence.
+> [!NOTE]  
+> There is special handling for this [Plex presence](https://github.com/phin05/discord-rich-presence-plex)
 
 ## Options
 
